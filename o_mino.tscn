@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkntmgn08fxj5"]
+
+[ext_resource type="PackedScene" uid="uid://c5j3l1pc2lvj" path="res://blocks/yellow.glb" id="1_ge01n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cohl5"]
+size = Vector3(2, 2, 1)
+
+[node name="OMino" type="CharacterBody3D"]
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Mino" parent="Pivot" instance=ExtResource("1_ge01n")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_cohl5")

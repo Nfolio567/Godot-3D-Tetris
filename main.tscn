@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=3 uid="uid://b7i68khvmaf6k"]
+
+[ext_resource type="Script" uid="uid://c271gxxfdy6x" path="res://Main.cs" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cdva6dfgolea3" path="res://j_mino.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://um6oqwlggo2d" path="res://blocks/field2.glb" id="3_h2yge"]
+[ext_resource type="AudioStream" uid="uid://b3m8ayoa8yqdm" path="res://bgm/TETRIS-2023.ogg" id="4_lquwl"]
+[ext_resource type="AudioStream" uid="uid://c3ydrlybona1c" path="res://bgm/TETRIS-TITLE.ogg" id="5_7mycd"]
+[ext_resource type="Script" uid="uid://bt1rky7jurt62" path="res://AudioVisualizer.cs" id="5_lquwl"]
+
+[sub_resource type="Environment" id="Environment_h2yge"]
+ambient_light_source = 3
+ssao_enabled = true
+ssao_radius = 1.5
+ssao_intensity = 1.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h2yge"]
+size = Vector3(10, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
+size = Vector3(1, 20, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1bvp3"]
+size = Vector3(1, 20, 1)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_ig7tw")
+JMinoScene = ExtResource("2_h2yge")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h2yge")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.247734, 10, 17)
+size = 21.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.9659258, -0.0669873, 0.25, 0, 0.9659258, 0.258819, -0.258819, -0.24999999, 0.93301266, 2, 18, 35)
+shadow_enabled = true
+shadow_bias = 0.05
+shadow_normal_bias = 0.1
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.59503484, -0.4829629, -0.64240205, 0.4330127, 0.8660254, -0.25, 0.67707723, -0.12940955, 0.7244443, -25, 0, 23)
+light_energy = 0.5
+
+[node name="BlockTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="FloorCollision" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_h2yge")
+
+[node name="LeftWallCollision" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 10, 0)
+shape = SubResource("BoxShape3D_0xm2m")
+
+[node name="RightWallCllision" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 10, 0)
+shape = SubResource("BoxShape3D_1bvp3")
+
+[node name="field2" parent="StaticBody3D" instance=ExtResource("3_h2yge")]
+
+[node name="MainBGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_lquwl")
+bus = &"BGM"
+
+[node name="TitleBGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_7mycd")
+
+[node name="AudioVisualizer" type="Node2D" parent="."]
+script = ExtResource("5_lquwl")
+PointsNum = 128
+MaxHertz = 2000
+
+[connection signal="timeout" from="BlockTimer" to="." method="OnBlockTimerTimeout"]

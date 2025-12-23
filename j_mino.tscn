@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdva6dfgolea3"]
+
+[ext_resource type="Script" uid="uid://dkddlyun1dwj5" path="res://Jmino.cs" id="1_6ocrg"]
+[ext_resource type="PackedScene" uid="uid://b6oswu53dpudu" path="res://blocks/blue.glb" id="1_6w8ck"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6w8ck"]
+size = Vector3(2.999, 0.999, 0.999)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6ocrg"]
+size = Vector3(0.999, 0.999, 0.999)
+
+[node name="Jmino" type="CharacterBody3D"]
+script = ExtResource("1_6ocrg")
+
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="Mino" parent="Pivot" instance=ExtResource("1_6w8ck")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_6w8ck")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+shape = SubResource("BoxShape3D_6ocrg")
