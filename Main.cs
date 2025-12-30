@@ -4,7 +4,8 @@ using System;
 public partial class Main : Node
 {
 	[Export] public PackedScene JMinoScene { get; set; }
-	[Export] public float Gravity = 1.0f;
+	[Export] public float Gravity = 20.0f;
+	[Export] public float OriginDropSpeed = 5;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -20,8 +21,9 @@ public partial class Main : Node
 	private void OnBlockTimerTimeout()
 	{
 		var jMino = JMinoScene.Instantiate<Jmino>();
+		jMino.DroppedBlock += OnBlockDropped;
 		
-		jMino.Init(Gravity);
+		jMino.Init(Gravity, OriginDropSpeed);
 		
 		AddChild(jMino);
 	}
@@ -29,5 +31,17 @@ public partial class Main : Node
 	public void NewGame()
 	{
 		GetNode<AudioStreamPlayer>("MainBGM").Play();
+	}
+
+	private void OnBlockDropped()
+	{
+		var lockDelay = GetNode<Timer>("LockDelay");
+		lockDelay.Start();
+		lockDelay.Timeout += OnLockDelayTimerTimeout;
+	}
+
+	private void OnLockDelayTimerTimeout()
+	{
+		GetNode<Mino>("ActiveMino").LockDelay(GetNode<Timer>("LockDelay"));
 	}
 }

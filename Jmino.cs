@@ -22,9 +22,9 @@ public partial class Jmino : Mino
 		MoveAndSlide();
   }*/
 
-  public override void Init(float gravity)
+  public override void Init(float gravity, float originDropSpeed)
   {
-	  base.Init(gravity);
+	  base.Init(gravity, originDropSpeed);
 	  Position = new Vector3(-0.5f, 19, 0);
   }
 }

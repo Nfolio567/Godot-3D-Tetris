@@ -1,11 +1,9 @@
 using Godot;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 public partial class AudioVisualizer : Node2D
 {
-	[Export] public int PointsNum = 64;
+	[Export] public float PointsNum = 64;
 	[Export] public int MaxHertz = 20000;
 	
 	private AudioEffectSpectrumAnalyzerInstance _analyzer;
@@ -43,22 +41,23 @@ public partial class AudioVisualizer : Node2D
 			newRightLine.Width = originLineWidth * 64 / PointsNum;
 			newRightLine.AddPoint(new Vector2(viewportSize.X + 50, pointY));
 			newRightLine.AddPoint(new Vector2(_originPointsX[1], pointY));
+
+			var color = Color.FromHsv(360.0f * (i / PointsNum), 1.0f, 1.0f);
+			newLeftLine.DefaultColor = color;
+			newRightLine.DefaultColor = color;
+			GD.Print(360.0f * (i / PointsNum));
 			
 			AddChild(newLeftLine);
 			AddChild(newRightLine);
 		}
 
 		_lines = new List<List<Line2D>> { leftLines, rightLines };
-
-		var test = _lines[0][10].GetPointPosition(1);
-		test.X += 900;
-		_lines[0][10].SetPointPosition(1, test);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		var spectrums = new List<Vector2>(PointsNum);
+		var spectrums = new List<Vector2>((int)PointsNum);
 		var minRange = 0.0f;
 		var maxRange = (float)MaxHertz / PointsNum;
 
