@@ -12,9 +12,7 @@ size = Vector3(0.999, 0.999, 0.999)
 [node name="Jmino" type="CharacterBody3D"]
 script = ExtResource("1_6ocrg")
 
-[node name="Pivot" type="Node3D" parent="."]
-
-[node name="Mino" parent="Pivot" instance=ExtResource("1_6w8ck")]
+[node name="Mino" parent="." instance=ExtResource("1_6w8ck")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_6w8ck")

@@ -6,6 +6,8 @@ public partial class Main : Node
 	[Export] public PackedScene JMinoScene { get; set; }
 	[Export] public float Gravity = 20.0f;
 	[Export] public float OriginDropSpeed = 5;
+
+	private int _droppedBlockNum;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -23,7 +25,7 @@ public partial class Main : Node
 		var jMino = JMinoScene.Instantiate<Jmino>();
 		jMino.DroppedBlock += OnBlockDropped;
 		
-		jMino.Init(Gravity, OriginDropSpeed);
+		jMino.Init(Gravity, OriginDropSpeed, _droppedBlockNum);
 		
 		AddChild(jMino);
 	}
@@ -37,11 +39,16 @@ public partial class Main : Node
 	{
 		var lockDelay = GetNode<Timer>("LockDelay");
 		lockDelay.Start();
-		lockDelay.Timeout += OnLockDelayTimerTimeout;
 	}
 
 	private void OnLockDelayTimerTimeout()
 	{
 		GetNode<Mino>("ActiveMino").LockDelay(GetNode<Timer>("LockDelay"));
+	}
+
+	public void OnActiveBlockTreeExited(StaticBody3D staticBlock)
+	{
+		AddChild(staticBlock);
+		_droppedBlockNum++;
 	}
 }

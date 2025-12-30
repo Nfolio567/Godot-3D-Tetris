@@ -9,9 +9,7 @@ size = Vector3(3, 1, 1)
 
 [node name="Lmino" type="CharacterBody3D"]
 
-[node name="Pivot" type="Node3D" parent="."]
-
-[node name="Mino" parent="Pivot" instance=ExtResource("1_uxm20")]
+[node name="Mino" parent="." instance=ExtResource("1_uxm20")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_8fasl")

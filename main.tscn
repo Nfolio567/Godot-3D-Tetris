@@ -38,6 +38,7 @@ transform = Transform3D(0.59503484, -0.4829629, -0.64240205, 0.4330127, 0.866025
 light_energy = 0.5
 
 [node name="LockDelay" type="Timer" parent="."]
+one_shot = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
@@ -45,7 +46,7 @@ light_energy = 0.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_h2yge")
 
-[node name="field2" parent="StaticBody3D" instance=ExtResource("3_h2yge")]
+[node name="Field" parent="StaticBody3D" instance=ExtResource("3_h2yge")]
 
 [node name="MainBGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_lquwl")
@@ -63,4 +64,5 @@ MaxHertz = 2000
 one_shot = true
 autostart = true
 
+[connection signal="timeout" from="LockDelay" to="." method="OnLockDelayTimerTimeout"]
 [connection signal="timeout" from="start-block-debug" to="." method="OnBlockTimerTimeout"]

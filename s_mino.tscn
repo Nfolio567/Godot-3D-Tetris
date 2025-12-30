@@ -10,9 +10,7 @@ size = Vector3(2, 1, 1)
 
 [node name="SMino" type="CharacterBody3D"]
 
-[node name="Pivot" type="Node3D" parent="."]
-
-[node name="Mino" parent="Pivot" instance=ExtResource("1_xvghd")]
+[node name="Mino" parent="." instance=ExtResource("1_xvghd")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
