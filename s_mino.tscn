@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1k1yya0xa5q3"]
+[gd_scene load_steps=5 format=3 uid="uid://d1k1yya0xa5q3"]
 
+[ext_resource type="Script" uid="uid://clp1tpneg17h8" path="res://SMino.cs" id="1_i0vsi"]
 [ext_resource type="PackedScene" uid="uid://qjhwgs2rca40" path="res://blocks/green.glb" id="1_xvghd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xvghd"]
@@ -9,6 +10,7 @@ size = Vector3(2, 1, 1)
 size = Vector3(2, 1, 1)
 
 [node name="SMino" type="CharacterBody3D"]
+script = ExtResource("1_i0vsi")
 
 [node name="Mino" parent="." instance=ExtResource("1_xvghd")]
 

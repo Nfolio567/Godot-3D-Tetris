@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqp53nwpdh63l"]
+[gd_scene load_steps=5 format=3 uid="uid://bqp53nwpdh63l"]
 
+[ext_resource type="Script" uid="uid://bo5v7mj35gv40" path="res://ZMino.cs" id="1_h8ux2"]
 [ext_resource type="PackedScene" uid="uid://buh42f5qv6dbu" path="res://blocks/red.glb" id="1_yh5hh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h8ux2"]
@@ -9,6 +10,7 @@ size = Vector3(2, 1, 1)
 size = Vector3(2, 1, 1)
 
 [node name="ZMino" type="CharacterBody3D"]
+script = ExtResource("1_h8ux2")
 
 [node name="Mino" parent="." instance=ExtResource("1_yh5hh")]
 

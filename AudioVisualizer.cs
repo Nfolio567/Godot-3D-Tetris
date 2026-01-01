@@ -59,13 +59,13 @@ public partial class AudioVisualizer : Node2D
 	{
 		var spectrums = new List<Vector2>((int)PointsNum);
 		var minRange = 0.0f;
-		var maxRange = (float)MaxHertz / PointsNum;
+		var maxRange = MaxHertz / PointsNum;
 
 		for (var i = 0; i < PointsNum; i++)
 		{
 			spectrums.Add(_analyzer.GetMagnitudeForFrequencyRange(minRange, maxRange));
 			minRange = maxRange + 1;
-			maxRange += (float)MaxHertz / PointsNum;
+			maxRange += MaxHertz / PointsNum;
 		}
 
 		for (var i = 0; i < spectrums.Count; i++)

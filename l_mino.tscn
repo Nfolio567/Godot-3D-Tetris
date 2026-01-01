@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dyfti567vj5nk"]
+[gd_scene load_steps=5 format=3 uid="uid://dyfti567vj5nk"]
 
+[ext_resource type="Script" uid="uid://c0q3x01ru5mx7" path="res://LMino.cs" id="1_7ai44"]
 [ext_resource type="PackedScene" uid="uid://wbqc371ynj47" path="res://blocks/orange.glb" id="1_uxm20"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8fasl"]
@@ -8,6 +9,7 @@ size = Vector3(3, 1, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_gjgmy"]
 
 [node name="Lmino" type="CharacterBody3D"]
+script = ExtResource("1_7ai44")
 
 [node name="Mino" parent="." instance=ExtResource("1_uxm20")]
 

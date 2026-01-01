@@ -1,11 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7i68khvmaf6k"]
+[gd_scene load_steps=15 format=3 uid="uid://b7i68khvmaf6k"]
 
 [ext_resource type="Script" uid="uid://c271gxxfdy6x" path="res://Main.cs" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cdva6dfgolea3" path="res://j_mino.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dyfti567vj5nk" path="res://l_mino.tscn" id="3_dg77c"]
 [ext_resource type="PackedScene" uid="uid://um6oqwlggo2d" path="res://blocks/field2.glb" id="3_h2yge"]
 [ext_resource type="AudioStream" uid="uid://b3m8ayoa8yqdm" path="res://bgm/TETRIS-2023.ogg" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://d1k1yya0xa5q3" path="res://s_mino.tscn" id="4_ycdy4"]
 [ext_resource type="AudioStream" uid="uid://c3ydrlybona1c" path="res://bgm/TETRIS-TITLE.ogg" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://bt1rky7jurt62" path="res://AudioVisualizer.cs" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://bqp53nwpdh63l" path="res://z_mino.tscn" id="5_w48qg"]
+[ext_resource type="PackedScene" uid="uid://bkntmgn08fxj5" path="res://o_mino.tscn" id="6_vivmo"]
+[ext_resource type="PackedScene" uid="uid://27w36ae3l6yu" path="res://t_mino.tscn" id="7_2cqfq"]
+[ext_resource type="PackedScene" uid="uid://s0pylo3ejxyx" path="res://i_mino.tscn" id="8_yaehf"]
 
 [sub_resource type="Environment" id="Environment_h2yge"]
 ambient_light_source = 3
@@ -19,6 +25,12 @@ size = Vector3(10, 1, 1)
 [node name="Main" type="Node"]
 script = ExtResource("1_ig7tw")
 JMinoScene = ExtResource("2_h2yge")
+LMinoScene = ExtResource("3_dg77c")
+SMinoScene = ExtResource("4_ycdy4")
+ZMinoScene = ExtResource("5_w48qg")
+OMinoScene = ExtResource("6_vivmo")
+TMinoScene = ExtResource("7_2cqfq")
+IMinoScene = ExtResource("8_yaehf")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_h2yge")

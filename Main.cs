@@ -1,18 +1,30 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Main : Node
 {
 	[Export] public PackedScene JMinoScene { get; set; }
+	[Export] public PackedScene LMinoScene { get; set; }
+	[Export] public PackedScene SMinoScene { get; set; }
+	[Export] public PackedScene ZMinoScene { get; set; }
+	[Export] public PackedScene OMinoScene { get; set; }
+	[Export] public PackedScene TMinoScene { get; set; }
+	[Export] public PackedScene IMinoScene { get; set; }
+	
 	[Export] public float Gravity = 20.0f;
 	[Export] public float OriginDropSpeed = 5;
 
 	private int _droppedBlockNum;
+
+	private List<PackedScene> Minos;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		NewGame();
+		Minos = new List<PackedScene>
+			{ JMinoScene, LMinoScene, SMinoScene, ZMinoScene, OMinoScene, TMinoScene, IMinoScene };
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,12 +34,13 @@ public partial class Main : Node
 	
 	private void OnBlockTimerTimeout()
 	{
-		var jMino = JMinoScene.Instantiate<Jmino>();
-		jMino.DroppedBlock += OnBlockDropped;
+		var rand = new Random();
+		var mino = Minos[rand.Next(Minos.Count)].Instantiate<Mino>();
+		mino.DroppedBlock += OnBlockDropped;
 		
-		jMino.Init(Gravity, OriginDropSpeed, _droppedBlockNum);
+		mino.Init(Gravity, OriginDropSpeed, _droppedBlockNum);
 		
-		AddChild(jMino);
+		AddChild(mino);
 	}
 
 	public void NewGame()

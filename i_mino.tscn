@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://s0pylo3ejxyx"]
+[gd_scene load_steps=4 format=3 uid="uid://s0pylo3ejxyx"]
 
+[ext_resource type="Script" uid="uid://cbg3sa6fcr7bj" path="res://IMino.cs" id="1_7ldho"]
 [ext_resource type="PackedScene" uid="uid://56fmq02ruhre" path="res://blocks/sky.glb" id="1_vh8bq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vh8bq"]
 size = Vector3(4, 1, 1)
 
 [node name="IMino" type="CharacterBody3D"]
+script = ExtResource("1_7ldho")
 
 [node name="Mino" parent="." instance=ExtResource("1_vh8bq")]
 
